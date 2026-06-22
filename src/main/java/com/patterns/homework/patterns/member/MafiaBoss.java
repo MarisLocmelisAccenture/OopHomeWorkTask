@@ -1,4 +1,4 @@
-package com.patterns.homework.patterns.component;
+package com.patterns.homework.patterns.member;
 
 import lombok.Getter;
 

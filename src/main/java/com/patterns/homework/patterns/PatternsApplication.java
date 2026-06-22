@@ -1,20 +1,20 @@
 package com.patterns.homework.patterns;
 
-import com.patterns.homework.patterns.component.*;
-import com.patterns.homework.patterns.contract.Mediator;
+import com.patterns.homework.patterns.member.*;
+import com.patterns.homework.patterns.contract.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
 
 public class PatternsApplication {
 
     static void main() {
-        Mediator mediator = MessageMediatorImpl.getInstance();
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
 
         AbstractChatMember
-                gangMember = new BanditImpl(mediator, boss),
-                maris = new MarisImpl(mediator),
-                friend = new FriendImpl(mediator);
+                gangMember = new Bandit(mediator, boss),
+                maris = new Maris(mediator),
+                friend = new Friend(mediator);
 
         maris.send(FactoryMethod.createFromString("This Is Stolen", false));
         friend.send(FactoryMethod.createFromString("Your Info was stolen", true));

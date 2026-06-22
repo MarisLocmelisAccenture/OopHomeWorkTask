@@ -1,23 +1,23 @@
 package com.patterns.homework.patterns.service;
 
-import com.patterns.homework.patterns.component.AbstractChatMember;
-import com.patterns.homework.patterns.contract.Mediator;
+import com.patterns.homework.patterns.member.AbstractChatMember;
+import com.patterns.homework.patterns.contract.MediatorService;
 import com.patterns.homework.patterns.contract.Message;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class MessageMediatorImpl implements Mediator {
+public final class MessageMediatorServiceImpl implements MediatorService {
     //Singleton
-    public static MessageMediatorImpl instance;
-    public static MessageMediatorImpl getInstance() {
+    public static MessageMediatorServiceImpl instance;
+    public static MessageMediatorServiceImpl getInstance() {
         if (instance == null) {
-            instance = new MessageMediatorImpl();
+            instance = new MessageMediatorServiceImpl();
         }
 
         return instance;
     }
 
-    private MessageMediatorImpl() {
+    private MessageMediatorServiceImpl() {
 
     }
 

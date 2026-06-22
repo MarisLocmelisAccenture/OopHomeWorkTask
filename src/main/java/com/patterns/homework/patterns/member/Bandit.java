@@ -1,12 +1,12 @@
-package com.patterns.homework.patterns.component;
+package com.patterns.homework.patterns.member;
 
-import com.patterns.homework.patterns.contract.Mediator;
+import com.patterns.homework.patterns.contract.MediatorService;
 import com.patterns.homework.patterns.contract.Message;
 
 //Decorator or Proxy
-public class BanditImpl extends FriendImpl {
+public class Bandit extends Friend {
     private final MafiaBoss boss;
-    public BanditImpl(Mediator mediator, MafiaBoss boss) {
+    public Bandit(MediatorService mediator, MafiaBoss boss) {
         super(mediator);
         this.boss = boss;
     }

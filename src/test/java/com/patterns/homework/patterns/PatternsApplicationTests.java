@@ -1,14 +1,14 @@
 package com.patterns.homework.patterns;
 
-import com.patterns.homework.patterns.component.BanditImpl;
-import com.patterns.homework.patterns.component.FriendImpl;
-import com.patterns.homework.patterns.component.MafiaBoss;
-import com.patterns.homework.patterns.component.MarisImpl;
+import com.patterns.homework.patterns.member.Bandit;
+import com.patterns.homework.patterns.member.Friend;
+import com.patterns.homework.patterns.member.MafiaBoss;
+import com.patterns.homework.patterns.member.Maris;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.patterns.homework.patterns.component.AbstractChatMember;
-import com.patterns.homework.patterns.contract.Mediator;
+import com.patterns.homework.patterns.member.AbstractChatMember;
+import com.patterns.homework.patterns.contract.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
 
@@ -20,13 +20,13 @@ class PatternsApplicationTests {
 
     @Test
     void contextLoads() {
-        Mediator mediator = MessageMediatorImpl.getInstance();
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
 
         AbstractChatMember
-                gangMember = new BanditImpl(mediator, boss),
-                maris = new MarisImpl(mediator),
-                friend = new FriendImpl(mediator);
+                gangMember = new Bandit(mediator, boss),
+                maris = new Maris(mediator),
+                friend = new Friend(mediator);
 
         maris.send(FactoryMethod.createFromString("This Is Stolen", false));
         friend.send(FactoryMethod.createFromString("Your Info was stolen", true));

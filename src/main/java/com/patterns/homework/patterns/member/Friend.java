@@ -1,11 +1,11 @@
-package com.patterns.homework.patterns.component;
+package com.patterns.homework.patterns.member;
 
 import com.patterns.homework.patterns.contract.ChatMember;
-import com.patterns.homework.patterns.contract.Mediator;
+import com.patterns.homework.patterns.contract.MediatorService;
 import com.patterns.homework.patterns.contract.Message;
 
-public class FriendImpl extends AbstractChatMember implements ChatMember {
-    public FriendImpl(Mediator mediator) {
+public class Friend extends AbstractChatMember implements ChatMember {
+    public Friend(MediatorService mediator) {
         super(mediator);
     }
 

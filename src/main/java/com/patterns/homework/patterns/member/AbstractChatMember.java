@@ -1,7 +1,7 @@
-package com.patterns.homework.patterns.component;
+package com.patterns.homework.patterns.member;
 
 import com.patterns.homework.patterns.contract.ChatMember;
-import com.patterns.homework.patterns.contract.Mediator;
+import com.patterns.homework.patterns.contract.MediatorService;
 import com.patterns.homework.patterns.contract.Message;
 import lombok.Getter;
 
@@ -10,10 +10,10 @@ import java.util.List;
 
 @Getter
 public abstract class AbstractChatMember implements ChatMember {
-    private final Mediator mediator;
+    private final MediatorService mediator;
     protected final List<Message> messages = new ArrayList<>();
 
-    public AbstractChatMember(Mediator mediator) {
+    public AbstractChatMember(MediatorService mediator) {
         this.mediator = mediator;
         mediator.addMember(this);
     }
