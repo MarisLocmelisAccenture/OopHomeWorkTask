@@ -1,5 +1,6 @@
-package com.patterns.homework.patterns.interfaces;
+package com.patterns.homework.patterns.interfaces.service;
 
+import com.patterns.homework.patterns.interfaces.Message;
 import com.patterns.homework.patterns.member.AbstractChatMember;
 
 public interface MediatorService {

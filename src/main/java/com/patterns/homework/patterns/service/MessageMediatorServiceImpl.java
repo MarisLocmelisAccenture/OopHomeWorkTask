@@ -1,7 +1,7 @@
 package com.patterns.homework.patterns.service;
 
 import com.patterns.homework.patterns.member.AbstractChatMember;
-import com.patterns.homework.patterns.interfaces.MediatorService;
+import com.patterns.homework.patterns.interfaces.service.MediatorService;
 import com.patterns.homework.patterns.interfaces.Message;
 import java.util.ArrayList;
 import java.util.List;

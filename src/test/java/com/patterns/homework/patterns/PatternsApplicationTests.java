@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.patterns.homework.patterns.member.AbstractChatMember;
-import com.patterns.homework.patterns.interfaces.MediatorService;
+import com.patterns.homework.patterns.interfaces.service.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
 

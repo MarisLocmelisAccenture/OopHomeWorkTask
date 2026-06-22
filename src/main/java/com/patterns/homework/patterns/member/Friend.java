@@ -1,7 +1,7 @@
 package com.patterns.homework.patterns.member;
 
 import com.patterns.homework.patterns.interfaces.ChatMember;
-import com.patterns.homework.patterns.interfaces.MediatorService;
+import com.patterns.homework.patterns.interfaces.service.MediatorService;
 import com.patterns.homework.patterns.interfaces.Message;
 
 public class Friend extends AbstractChatMember implements ChatMember {
