@@ -1,6 +1,6 @@
 package com.patterns.homework.patterns.factory;
 
-import com.patterns.homework.patterns.contract.Message;
+import com.patterns.homework.patterns.interfaces.Message;
 import com.patterns.homework.patterns.dto.FriendWhisperMessage;
 import com.patterns.homework.patterns.dto.LaudMessage;
 

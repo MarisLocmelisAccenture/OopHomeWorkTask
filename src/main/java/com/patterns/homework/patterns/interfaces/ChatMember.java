@@ -1,4 +1,4 @@
-package com.patterns.homework.patterns.contract;
+package com.patterns.homework.patterns.interfaces;
 
 public interface ChatMember {
     void receive(Message message);
