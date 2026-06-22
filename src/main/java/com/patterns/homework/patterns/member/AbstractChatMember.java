@@ -19,6 +19,7 @@ public abstract class AbstractChatMember implements ChatMember {
     }
 
     public void send(Message message) {
+        System.out.printf("%s received message with type %s (content: %s) and sent to Mediator%n", this.getClass().getName(), message.getClass().getName(), message.message());
         mediator.send(message, this);
     }
 

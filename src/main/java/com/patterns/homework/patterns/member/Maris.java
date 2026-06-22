@@ -10,6 +10,7 @@ public class Maris extends AbstractChatMember {
 
     @Override
     public void receive(Message message) {
+        System.out.printf("Maris received message %s%n", message.message());
         this.messages.add(message);
     }
 }

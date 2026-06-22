@@ -16,10 +16,10 @@ public class PatternsApplication {
                 maris = new Maris(mediator),
                 friend = new Friend(mediator);
 
-        maris.send(FactoryMethod.createFromString("This Is Stolen", false));
-        friend.send(FactoryMethod.createFromString("Your Info was stolen", true));
-        maris.send(FactoryMethod.createFromString("I know", true));
-        gangMember.send(FactoryMethod.createFromString("Why you whisper ?"));
+        maris.send(FactoryMethod.createFromString("Observer Boss is informed Bandit and Friend heard", false));
+        friend.send(FactoryMethod.createFromString("Maris only heard", true));
+        maris.send(FactoryMethod.createFromString("Friend only heard", true));
+        gangMember.send(FactoryMethod.createFromString("Observer boss should not hear Maris and Friend heard"));
     }
 
 }

@@ -14,6 +14,7 @@ public class Bandit extends Friend {
     @Override
     public void receive(Message message) {
         boss.provideInfo(message.message());
-        super.receive(message);
+        System.out.println("Bandit as Decorated friend heard and shared information with Boss");
+        this.messages.add(message);
     }
 }
