@@ -54,7 +54,7 @@ public class GOFPatternTests {
         Assertions.assertThat(FactoryMethod.createFromString("test", true)).isInstanceOf(FriendWhisperMessage.class);
     }
 
-    //Wrapper on Friend (Bandit) to send necessary information to observer (MafiaBoss).
+    //Wrapper(Decorator) on Friend (Bandit) to send necessary information to observer (MafiaBoss).
     @Test
     void testObserverAndWrapper() {
         MafiaBoss boss = new MafiaBoss();
