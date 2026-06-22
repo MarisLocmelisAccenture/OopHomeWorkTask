@@ -12,7 +12,7 @@ public class MafiaBoss {
 
     public void provideInfo(String stolenMessage) {
         stolenInfo.add(stolenMessage);
-        System.out.printf("Mafia Boss as observer heard information %s%n", stolenMessage);
+        System.out.printf("Mafia Boss as observer heard information (%s)%n", stolenMessage);
     }
 
 }

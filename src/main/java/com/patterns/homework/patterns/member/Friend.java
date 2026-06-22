@@ -11,7 +11,7 @@ public class Friend extends AbstractChatMember implements ChatMember {
 
     @Override
     public void receive(Message message) {
-        System.out.printf("Friend received message %s%n", message.message());
+        System.out.printf("Friend received message (%s)%n", message.message());
         this.messages.add(message);
     }
 }
