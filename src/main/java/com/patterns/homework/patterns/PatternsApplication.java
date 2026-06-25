@@ -8,18 +8,17 @@ import com.patterns.homework.patterns.service.*;
 public class PatternsApplication {
 
     static void main() {
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
-        MafiaBoss boss = new MafiaBoss();
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();// mediator
+        MafiaBoss boss = new MafiaBoss();// primitive Observer
 
         AbstractChatMember
-                gangMember = new Bandit(mediator, boss),
+                gangMember = new Bandit(mediator, boss),//Decorator
                 maris = new Maris(mediator),
                 friend = new Friend(mediator);
 
-        maris.send(FactoryMethod.createFromString("Observer Boss is informed Bandit and Friend heard", false));
+        maris.send(FactoryMethod.createFromString("Observer Boss is informed Bandit and Friend heard", false));// Factory method
         friend.send(FactoryMethod.createFromString("Maris only heard", true));
         maris.send(FactoryMethod.createFromString("Friend only heard", true));
         gangMember.send(FactoryMethod.createFromString("Observer boss should not hear Maris and Friend heard"));
     }
-
 }
