@@ -1,7 +1,7 @@
 package com.patterns.homework.patterns.member;
 
-import com.patterns.homework.patterns.interfaces.service.MediatorService;
-import com.patterns.homework.patterns.interfaces.Message;
+import com.patterns.homework.patterns.service.MediatorService;
+import com.patterns.homework.patterns.dto.Message;
 
 //Decorator or Proxy
 public class Bandit extends Friend {

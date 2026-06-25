@@ -3,7 +3,7 @@ package com.patterns.homework.patterns;
 import com.patterns.homework.patterns.dto.FriendWhisperMessage;
 import com.patterns.homework.patterns.dto.LaudMessage;
 import com.patterns.homework.patterns.factory.FactoryMethod;
-import com.patterns.homework.patterns.interfaces.service.MediatorService;
+import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.member.*;
 import com.patterns.homework.patterns.service.MessageMediatorServiceImpl;
 import org.assertj.core.api.Assertions;

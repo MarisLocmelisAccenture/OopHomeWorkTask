@@ -1,4 +1,4 @@
-package com.patterns.homework.patterns.interfaces;
+package com.patterns.homework.patterns.dto;
 
 import com.patterns.homework.patterns.member.AbstractChatMember;
 

@@ -1,8 +1,7 @@
 package com.patterns.homework.patterns.member;
 
-import com.patterns.homework.patterns.interfaces.ChatMember;
-import com.patterns.homework.patterns.interfaces.service.MediatorService;
-import com.patterns.homework.patterns.interfaces.Message;
+import com.patterns.homework.patterns.service.MediatorService;
+import com.patterns.homework.patterns.dto.Message;
 import lombok.Getter;
 
 import java.util.ArrayList;
