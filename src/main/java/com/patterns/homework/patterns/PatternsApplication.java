@@ -1,14 +1,34 @@
 package com.patterns.homework.patterns;
 
+import com.patterns.homework.patterns.dto.Message;
 import com.patterns.homework.patterns.member.*;
 import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
 
+import java.util.Random;
+
 public class PatternsApplication {
 
     static void main() {
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();// mediator
+        Random random = new Random();
+
+        int chance = random.nextInt(100);
+
+        if (chance < 33) {
+            System.out.println("this will be mediator example");
+            mediatorExample();
+        } else if (chance < 66) {
+            System.out.println("this will be observer example");
+            observerExample();
+        } else {
+            System.out.println("this will be decorator example");
+            decoratorExample();
+        }
+    }
+
+    private static void mediatorExample() {
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();// mediator + Singleton
         MafiaBoss boss = new MafiaBoss();// primitive Observer
 
         AbstractChatMember
@@ -20,5 +40,28 @@ public class PatternsApplication {
         friend.send(FactoryMethod.createFromString("Maris only heard", true));
         maris.send(FactoryMethod.createFromString("Friend only heard", true));
         gangMember.send(FactoryMethod.createFromString("Observer boss should not hear Maris and Friend heard"));
+    }
+
+    private static void observerExample() {
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MafiaBoss boss = new MafiaBoss();
+
+        AbstractChatMember
+                gangMember = new Bandit(mediator, boss);
+
+        gangMember.receive(FactoryMethod.createFromString("Bandit will do something and Observer will interact with necessary information without changing the flow", false));
+    }
+
+    private static void decoratorExample() {
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MafiaBoss boss = new MafiaBoss();
+
+        AbstractChatMember
+                gangMember = new Bandit(mediator, boss),
+                friend = new Friend(mediator);
+
+        Message message = FactoryMethod.createFromString("this method is decorated with different behaviour", false);
+        gangMember.receive(message);
+        friend.receive(message);
     }
 }
