@@ -2,6 +2,7 @@ package com.patterns.homework.patterns.member;
 
 import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.dto.Message;
+import com.patterns.homework.patterns.util.PatternLogger;
 
 public class Maris extends AbstractChatMember {
     public Maris(MediatorService mediator) {
@@ -10,7 +11,7 @@ public class Maris extends AbstractChatMember {
 
     @Override
     public void receive(Message message) {
-        System.out.printf("Maris received message (%s)%n", message.message());
+        PatternLogger.printReceived(this.getClass().getSimpleName(), message.message(), message.getClass().getSimpleName());
         this.messages.add(message);
     }
 }

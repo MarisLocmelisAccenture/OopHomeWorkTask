@@ -5,61 +5,91 @@ import com.patterns.homework.patterns.member.*;
 import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
+import com.patterns.homework.patterns.util.PatternLogger;
 
 public class PatternsApplication {
 
     static void main() {
-        System.out.println();
-        System.out.println();
-        System.out.println("this will be mediator example");
+        PatternLogger.printSection("GoF Patterns Demonstration - Mafia Chat System");
+
         mediatorExample();
-
-        System.out.println();
-        System.out.println();
-        System.out.println("this will be observer example");
         observerExample();
-
-        System.out.println();
-        System.out.println();
-        System.out.println("this will be decorator example");
         decoratorExample();
+
+        PatternLogger.printSection("End of Demonstration");
     }
 
     private static void mediatorExample() {
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();// mediator + Singleton
-        MafiaBoss boss = new MafiaBoss();// primitive Observer
+        PatternLogger.printSection("Example 1: Mediator + Singleton Patterns");
+        PatternLogger.printPatternInfo("MEDIATOR",
+                "Centralizes complex communication logic between objects (chat members)");
+        PatternLogger.printPatternInfo("SINGLETON",
+                "Ensures only one instance of MessageMediatorService exists globally");
 
-        AbstractChatMember
-                gangMember = new Bandit(mediator, boss),//Decorator
-                maris = new Maris(mediator),
-                friend = new Friend(mediator);
+        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MafiaBoss boss = new MafiaBoss();
 
-        maris.send(FactoryMethod.createFromString("Observer Boss is informed Bandit and Friend heard", false));// Factory method
+        AbstractChatMember gangMember = new Bandit(mediator, boss);
+        AbstractChatMember maris = new Maris(mediator);
+        AbstractChatMember friend = new Friend(mediator);
+
+        PatternLogger.printInfo("📋 Setup: 3 chat members + 1 boss (observer) registered with mediator\n");
+
+        PatternLogger.printAction("Maris", "sends a public message");
+        maris.send(FactoryMethod.createFromString("Observer Boss is informed Bandit and Friend heard", false));
+
+        PatternLogger.printAction("Friend", "sends a whispered message");
         friend.send(FactoryMethod.createFromString("Maris only heard", true));
+
+        PatternLogger.printAction("Maris", "sends a whispered message");
         maris.send(FactoryMethod.createFromString("Friend only heard", true));
+
+        PatternLogger.printAction("Bandit", "sends a public message");
         gangMember.send(FactoryMethod.createFromString("Observer boss should not hear Maris and Friend heard"));
     }
 
     private static void observerExample() {
+        PatternLogger.printSection("Example 2: Observer Pattern");
+        PatternLogger.printPatternInfo("OBSERVER",
+                "Notifies multiple observers about events without coupling them to the subject");
+
         MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
 
-        AbstractChatMember
-                gangMember = new Bandit(mediator, boss);
+        AbstractChatMember gangMember = new Bandit(mediator, boss);
 
-        gangMember.receive(FactoryMethod.createFromString("Bandit will do something and Observer will interact with necessary information without changing the flow", false));
+        PatternLogger.printInfo("📋 Setup: Bandit with attached MafiaBoss observer\n");
+
+        PatternLogger.printAction("Bandit", "receives a message");
+        gangMember.receive(FactoryMethod.createFromString(
+                "Bandit will do something and Observer will interact with necessary information without changing the flow", false));
+
+        PatternLogger.printInfo("\n✓ Notice: MafiaBoss observed the action and collected information automatically");
     }
 
     private static void decoratorExample() {
+        PatternLogger.printSection("Example 3: Decorator + Factory Patterns");
+        PatternLogger.printPatternInfo("DECORATOR",
+                "Adds behavior to objects dynamically (Bandit decorates Friend with boss notification)");
+        PatternLogger.printPatternInfo("FACTORY METHOD",
+                "Creates different message types without exposing creation logic");
+
         MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
 
-        AbstractChatMember
-                gangMember = new Bandit(mediator, boss),
-                friend = new Friend(mediator);
+        AbstractChatMember gangMember = new Bandit(mediator, boss);
+        AbstractChatMember friend = new Friend(mediator);
 
         Message message = FactoryMethod.createFromString("this method is decorated with different behaviour", false);
+
+        PatternLogger.printInfo("📋 Setup: Same message received by regular Friend vs Decorated Bandit\n");
+
+        PatternLogger.printAction("Bandit (Decorated Friend)", "receives message");
         gangMember.receive(message);
+
+        PatternLogger.printAction("Friend (Regular)", "receives message");
         friend.receive(message);
+
+        PatternLogger.printInfo("\n✓ Notice: Bandit (decorated) forwarded info to boss, Friend (regular) did not");
     }
 }

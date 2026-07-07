@@ -2,6 +2,7 @@ package com.patterns.homework.patterns.member;
 
 import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.dto.Message;
+import com.patterns.homework.patterns.util.PatternLogger;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ public abstract class AbstractChatMember implements ChatMember {
     }
 
     public void send(Message message) {
-        System.out.printf("%s received message with type %s (content: %s) and sent to Mediator%n", this.getClass().getName(), message.getClass().getName(), message.message());
+        PatternLogger.printSent(this.getClass().getSimpleName(), message.message());
+        PatternLogger.printMediation("Routing message (type: " + message.getClass().getSimpleName() + ") through mediator");
         mediator.send(message, this);
     }
 
