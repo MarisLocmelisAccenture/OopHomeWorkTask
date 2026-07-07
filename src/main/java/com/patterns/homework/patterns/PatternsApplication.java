@@ -6,25 +6,21 @@ import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
 
-import java.util.Random;
-
 public class PatternsApplication {
 
     static void main() {
-        Random random = new Random();
+        System.out.println("this will be mediator example");
+        mediatorExample();
 
-        int chance = random.nextInt(100);
+        System.out.println();
+        System.out.println();
+        System.out.println("this will be observer example");
+        observerExample();
 
-        if (chance < 33) {
-            System.out.println("this will be mediator example");
-            mediatorExample();
-        } else if (chance < 66) {
-            System.out.println("this will be observer example");
-            observerExample();
-        } else {
-            System.out.println("this will be decorator example");
-            decoratorExample();
-        }
+        System.out.println();
+        System.out.println();
+        System.out.println("this will be decorator example");
+        decoratorExample();
     }
 
     private static void mediatorExample() {
