@@ -9,6 +9,8 @@ import com.patterns.homework.patterns.service.*;
 public class PatternsApplication {
 
     static void main() {
+        System.out.println();
+        System.out.println();
         System.out.println("this will be mediator example");
         mediatorExample();
 
