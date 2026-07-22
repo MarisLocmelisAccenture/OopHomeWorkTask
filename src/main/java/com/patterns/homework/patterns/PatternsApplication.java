@@ -14,7 +14,6 @@ public class PatternsApplication {
         mediatorExample();
         observerExample();
         decoratorExample();
-        fluentInterfaceExample();
         iteratorExample();
 
         PatternLogger.printSection("End of Demonstration");
@@ -101,27 +100,6 @@ public class PatternsApplication {
         friend.receive(message);
 
         PatternLogger.printInfo("\n✓ Notice: Bandit (decorated) forwarded info to boss, Friend (regular) did not");
-    }
-
-    private static void fluentInterfaceExample() {
-        PatternLogger.printSection("Example 4: Fluent Interface Pattern");
-
-        PatternLogger.printPatternInfo("Fluent Interface",
-                "Uses Fluent interface to send multiple messages");
-        PatternLogger.printPatternInfo("FACTORY METHOD",
-                "Creates different message types without exposing creation logic");
-
-        MessageMediatorServiceImpl mediator = MessageMediatorServiceImpl.getInstance();
-        mediator.clearMembers();
-        Maris maris = new Maris(mediator);
-        Friend friend = new Friend(mediator);
-
-        mediator.addMember(maris)
-                .addMember(friend);
-
-        maris.send(FactoryMethod.createFromString("First message", false))
-                .send(FactoryMethod.createFromString("Second message", true))
-                .send(FactoryMethod.createFromString("Third message", false));
     }
 
     private static void iteratorExample() {
