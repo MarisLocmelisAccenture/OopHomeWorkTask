@@ -120,8 +120,8 @@ public class PatternsApplication {
                 .addMember(friend);
 
         maris.send(FactoryMethod.createFromString("First message", false))
-             .send(FactoryMethod.createFromString("Second message", true))
-             .send(FactoryMethod.createFromString("Third message", false));
+                .send(FactoryMethod.createFromString("Second message", true))
+                .send(FactoryMethod.createFromString("Third message", false));
     }
 
     private static void iteratorExample() {
