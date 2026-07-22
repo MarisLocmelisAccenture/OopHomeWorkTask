@@ -15,6 +15,7 @@ public class PatternsApplication {
         observerExample();
         decoratorExample();
         fluentInterfaceExample();
+        iteratorExample();
 
         PatternLogger.printSection("End of Demonstration");
     }
@@ -115,10 +116,34 @@ public class PatternsApplication {
         Maris maris = new Maris(mediator);
         Friend friend = new Friend(mediator);
 
-        mediator.addMember(maris).addMember(friend);
+        mediator.addMember(maris)
+                .addMember(friend);
 
         maris.send(FactoryMethod.createFromString("First message", false))
              .send(FactoryMethod.createFromString("Second message", true))
              .send(FactoryMethod.createFromString("Third message", false));
+    }
+
+    private static void iteratorExample() {
+        PatternLogger.printSection("Example 4: Iterator Pattern");
+
+        PatternLogger.printPatternInfo("Iterator",
+                "Uses Iterator to traverse messages");
+        PatternLogger.printPatternInfo("FACTORY METHOD",
+                "Creates different message types without exposing creation logic");
+
+        MessageMediatorServiceImpl mediator = MessageMediatorServiceImpl.getInstance();
+        mediator.clearMembers();
+        Maris maris = new Maris(mediator);
+        Friend friend = new Friend(mediator);
+
+        mediator.addMember(maris)
+                .addMember(friend);
+
+        maris.send(FactoryMethod.createFromString("First message", false))
+                .send(FactoryMethod.createFromString("Second message", true))
+                .send(FactoryMethod.createFromString("Third message", false));
+
+        maris.getMessages().iterator().forEachRemaining(message -> PatternLogger.printInfo("[Iterator] Maris received: " + message.message()));
     }
 }
