@@ -45,4 +45,11 @@ public final class MessageMediatorServiceImpl implements MediatorService<Message
         PatternLogger.printInfo("✓ Member registered: " + member.getClass().getSimpleName() + " [Total: " + members.size() + "]");
         return this;
     }
+
+    @Override
+    public void clearMembers() {
+        int size = members.size();
+        members.clear();
+        PatternLogger.printInfo("✓ All members cleared [Elements Cleared: " + size + "]");
+    }
 }

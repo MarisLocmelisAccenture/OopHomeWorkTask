@@ -27,6 +27,7 @@ public class PatternsApplication {
                 "Ensures only one instance of MessageMediatorService exists globally");
 
         MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
+        mediator.clearMembers();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
@@ -56,6 +57,7 @@ public class PatternsApplication {
                 "Notifies multiple observers about events without coupling them to the subject");
 
         MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
+        mediator.clearMembers();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
@@ -79,6 +81,7 @@ public class PatternsApplication {
                 "Creates different message types without exposing creation logic");
 
         MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
+        mediator.clearMembers();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
@@ -108,6 +111,7 @@ public class PatternsApplication {
                 "Creates different message types without exposing creation logic");
 
         MessageMediatorServiceImpl mediator = MessageMediatorServiceImpl.getInstance();
+        mediator.clearMembers();
         Maris maris = new Maris(mediator);
         Friend friend = new Friend(mediator);
 
