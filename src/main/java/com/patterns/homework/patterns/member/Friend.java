@@ -4,8 +4,8 @@ import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.dto.Message;
 import com.patterns.homework.patterns.util.PatternLogger;
 
-public class Friend extends AbstractChatMember implements ChatMember {
-    public Friend(MediatorService mediator) {
+public class Friend extends AbstractChatMember<Friend> {
+    public Friend(MediatorService<?> mediator) {
         super(mediator);
     }
 

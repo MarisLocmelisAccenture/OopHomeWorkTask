@@ -2,7 +2,6 @@ package com.patterns.homework.patterns;
 
 import com.patterns.homework.patterns.dto.Message;
 import com.patterns.homework.patterns.member.*;
-import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.*;
 import com.patterns.homework.patterns.util.PatternLogger;
@@ -15,6 +14,7 @@ public class PatternsApplication {
         mediatorExample();
         observerExample();
         decoratorExample();
+        fluentInterfaceExample();
 
         PatternLogger.printSection("End of Demonstration");
     }
@@ -26,14 +26,14 @@ public class PatternsApplication {
         PatternLogger.printPatternInfo("SINGLETON",
                 "Ensures only one instance of MessageMediatorService exists globally");
 
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
 
-        AbstractChatMember gangMember = new Bandit(mediator, observer);
-        AbstractChatMember maris = new Maris(mediator);
-        AbstractChatMember friend = new Friend(mediator);
+        ChatMember<Friend> gangMember = new Bandit(mediator, observer);
+        ChatMember<Maris> maris = new Maris(mediator);
+        ChatMember<Friend> friend = new Friend(mediator);
 
         PatternLogger.printInfo("📋 Setup: 3 chat members + 1 boss (observer) registered with mediator\n");
 
@@ -55,12 +55,12 @@ public class PatternsApplication {
         PatternLogger.printPatternInfo("OBSERVER",
                 "Notifies multiple observers about events without coupling them to the subject");
 
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
 
-        AbstractChatMember gangMember = new Bandit(mediator, observer);
+        ChatMember<Friend> gangMember = new Bandit(mediator, observer);
 
         PatternLogger.printInfo("📋 Setup: Bandit with attached MafiaBoss observer\n");
 
@@ -78,13 +78,13 @@ public class PatternsApplication {
         PatternLogger.printPatternInfo("FACTORY METHOD",
                 "Creates different message types without exposing creation logic");
 
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
 
-        AbstractChatMember gangMember = new Bandit(mediator, observer);
-        AbstractChatMember friend = new Friend(mediator);
+        ChatMember<Friend> gangMember = new Bandit(mediator, observer);
+        ChatMember<Friend> friend = new Friend(mediator);
 
         Message message = FactoryMethod.createFromString("this method is decorated with different behaviour", false);
 
@@ -97,5 +97,24 @@ public class PatternsApplication {
         friend.receive(message);
 
         PatternLogger.printInfo("\n✓ Notice: Bandit (decorated) forwarded info to boss, Friend (regular) did not");
+    }
+
+    private static void fluentInterfaceExample() {
+        PatternLogger.printSection("Example 4: Fluent Interface Pattern");
+
+        PatternLogger.printPatternInfo("Fluent Interface",
+                "Uses Fluent interface to send multiple messages");
+        PatternLogger.printPatternInfo("FACTORY METHOD",
+                "Creates different message types without exposing creation logic");
+
+        MessageMediatorServiceImpl mediator = MessageMediatorServiceImpl.getInstance();
+        Maris maris = new Maris(mediator);
+        Friend friend = new Friend(mediator);
+
+        mediator.addMember(maris).addMember(friend);
+
+        maris.send(FactoryMethod.createFromString("First message", false))
+             .send(FactoryMethod.createFromString("Second message", true))
+             .send(FactoryMethod.createFromString("Third message", false));
     }
 }

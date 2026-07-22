@@ -8,7 +8,7 @@ import com.patterns.homework.patterns.util.PatternLogger;
 public class Bandit extends Friend {
     private final ObserverService observerService;
 
-    public Bandit(MediatorService mediator, ObserverService observerService) {
+    public Bandit(MediatorService<?> mediator, ObserverService observerService) {
         super(mediator);
         this.observerService = observerService;
     }

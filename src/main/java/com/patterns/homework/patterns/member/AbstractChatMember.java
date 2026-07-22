@@ -9,19 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public abstract class AbstractChatMember implements ChatMember {
-    private final MediatorService mediator;
+public abstract class AbstractChatMember<T> implements ChatMember<T> {
+    private final MediatorService<?> mediator;
     protected final List<Message> messages = new ArrayList<>();
 
-    public AbstractChatMember(MediatorService mediator) {
+    public AbstractChatMember(MediatorService<?> mediator) {
         this.mediator = mediator;
         mediator.addMember(this);
     }
 
-    public void send(Message message) {
+    @SuppressWarnings("unchecked")
+    public T send(Message message) {
         PatternLogger.printSent(this.getClass().getSimpleName(), message.message());
         PatternLogger.printMediation("Routing message (type: " + message.getClass().getSimpleName() + ") through mediator");
         mediator.send(message, this);
+        return (T) this;
     }
 
     public abstract void receive(Message message);

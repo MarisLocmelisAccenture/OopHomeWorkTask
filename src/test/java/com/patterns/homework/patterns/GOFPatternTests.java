@@ -18,12 +18,12 @@ import java.util.List;
 public class GOFPatternTests {
     @Test
     void testMediator() {
-        MediatorService mediator = MessageMediatorServiceImpl.getInstance();
+        MediatorService<?> mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
 
-        AbstractChatMember
+        AbstractChatMember<?>
                 gangMember = new Bandit(mediator, observer),
                 maris = new Maris(mediator),
                 friend = new Friend(mediator);
@@ -65,8 +65,8 @@ public class GOFPatternTests {
         ObserverService observer = new ObserverServiceImpl();
         observer.addObserver(boss);
 
-        MediatorService mediatorMock = Mockito.mock(MediatorService.class);
-        AbstractChatMember gangMember = new Bandit(mediatorMock, observer);
+        MediatorService<?> mediatorMock = Mockito.mock(MediatorService.class);
+        AbstractChatMember<?> gangMember = new Bandit(mediatorMock, observer);
 
         LaudMessage testMessage = new LaudMessage("test message");
         gangMember.receive(testMessage);

@@ -1,10 +1,10 @@
 package com.patterns.homework.patterns.service;
 
 import com.patterns.homework.patterns.dto.Message;
-import com.patterns.homework.patterns.member.AbstractChatMember;
+import com.patterns.homework.patterns.member.ChatMember;
 
-public interface MediatorService {
-    void send(Message message, AbstractChatMember sender);
+public interface MediatorService<T> {
+    void send(Message message, ChatMember<?> sender);
 
-    void addMember(AbstractChatMember member);
+    T addMember(ChatMember<?> member);
 }

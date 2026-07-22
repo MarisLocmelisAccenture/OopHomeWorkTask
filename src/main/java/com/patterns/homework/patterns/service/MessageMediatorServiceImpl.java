@@ -1,13 +1,13 @@
 package com.patterns.homework.patterns.service;
 
-import com.patterns.homework.patterns.member.AbstractChatMember;
 import com.patterns.homework.patterns.dto.Message;
+import com.patterns.homework.patterns.member.ChatMember;
 import com.patterns.homework.patterns.util.PatternLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class MessageMediatorServiceImpl implements MediatorService {
+public final class MessageMediatorServiceImpl implements MediatorService<MessageMediatorServiceImpl> {
     //Singleton
     public static MessageMediatorServiceImpl instance;
     public static MessageMediatorServiceImpl getInstance() {
@@ -20,10 +20,10 @@ public final class MessageMediatorServiceImpl implements MediatorService {
     private MessageMediatorServiceImpl() {
     }
 
-    private final List<AbstractChatMember> members = new ArrayList<>();
+    private final List<ChatMember<?>> members = new ArrayList<>();
 
     @Override
-    public void send(Message message, AbstractChatMember sender) {
+    public void send(Message message, ChatMember<?> sender) {
         members.forEach((receiver) -> {
             if (receiver == sender) {
                 return;
@@ -40,8 +40,9 @@ public final class MessageMediatorServiceImpl implements MediatorService {
     }
 
     @Override
-    public void addMember(AbstractChatMember member) {
+    public MessageMediatorServiceImpl addMember(ChatMember<?> member) {
         members.add(member);
         PatternLogger.printInfo("✓ Member registered: " + member.getClass().getSimpleName() + " [Total: " + members.size() + "]");
+        return this;
     }
 }
