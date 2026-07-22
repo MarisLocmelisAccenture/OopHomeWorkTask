@@ -1,5 +1,10 @@
 plugins {
     java
+    application
+}
+
+application {
+    mainClass = "com.patterns.homework.patterns.PatternsApplication"
 }
 
 group = "com.patterns.homework"
