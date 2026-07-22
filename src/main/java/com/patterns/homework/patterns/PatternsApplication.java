@@ -28,8 +28,10 @@ public class PatternsApplication {
 
         MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
+        ObserverService observer = new ObserverServiceImpl();
+        observer.addObserver(boss);
 
-        AbstractChatMember gangMember = new Bandit(mediator, boss);
+        AbstractChatMember gangMember = new Bandit(mediator, observer);
         AbstractChatMember maris = new Maris(mediator);
         AbstractChatMember friend = new Friend(mediator);
 
@@ -55,8 +57,10 @@ public class PatternsApplication {
 
         MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
+        ObserverService observer = new ObserverServiceImpl();
+        observer.addObserver(boss);
 
-        AbstractChatMember gangMember = new Bandit(mediator, boss);
+        AbstractChatMember gangMember = new Bandit(mediator, observer);
 
         PatternLogger.printInfo("📋 Setup: Bandit with attached MafiaBoss observer\n");
 
@@ -76,8 +80,10 @@ public class PatternsApplication {
 
         MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
+        ObserverService observer = new ObserverServiceImpl();
+        observer.addObserver(boss);
 
-        AbstractChatMember gangMember = new Bandit(mediator, boss);
+        AbstractChatMember gangMember = new Bandit(mediator, observer);
         AbstractChatMember friend = new Friend(mediator);
 
         Message message = FactoryMethod.createFromString("this method is decorated with different behaviour", false);

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class MafiaBoss {
+public class MafiaBoss implements Observer {
     private final List<String> stolenInfo = new ArrayList<>();
 
-    public void provideInfo(String stolenMessage) {
+    public void update(String stolenMessage) {
         stolenInfo.add(stolenMessage);
         PatternLogger.printObservation("MafiaBoss collected info: \"" + stolenMessage + "\" [Total collected: " + stolenInfo.size() + "]");
     }

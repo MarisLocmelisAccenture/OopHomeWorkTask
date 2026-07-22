@@ -6,6 +6,8 @@ import com.patterns.homework.patterns.factory.FactoryMethod;
 import com.patterns.homework.patterns.service.MediatorService;
 import com.patterns.homework.patterns.member.*;
 import com.patterns.homework.patterns.service.MessageMediatorServiceImpl;
+import com.patterns.homework.patterns.service.ObserverService;
+import com.patterns.homework.patterns.service.ObserverServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,9 +20,11 @@ public class GOFPatternTests {
     void testMediator() {
         MediatorService mediator = MessageMediatorServiceImpl.getInstance();
         MafiaBoss boss = new MafiaBoss();
+        ObserverService observer = new ObserverServiceImpl();
+        observer.addObserver(boss);
 
         AbstractChatMember
-                gangMember = new Bandit(mediator, boss),
+                gangMember = new Bandit(mediator, observer),
                 maris = new Maris(mediator),
                 friend = new Friend(mediator);
 
@@ -58,9 +62,11 @@ public class GOFPatternTests {
     @Test
     void testObserverAndWrapper() {
         MafiaBoss boss = new MafiaBoss();
+        ObserverService observer = new ObserverServiceImpl();
+        observer.addObserver(boss);
 
         MediatorService mediatorMock = Mockito.mock(MediatorService.class);
-        AbstractChatMember gangMember = new Bandit(mediatorMock, boss);
+        AbstractChatMember gangMember = new Bandit(mediatorMock, observer);
 
         LaudMessage testMessage = new LaudMessage("test message");
         gangMember.receive(testMessage);
