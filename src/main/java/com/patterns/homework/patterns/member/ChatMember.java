@@ -4,5 +4,6 @@ import com.patterns.homework.patterns.dto.Message;
 
 public interface ChatMember<T> {
     T send(Message message);
+
     void receive(Message message);
 }

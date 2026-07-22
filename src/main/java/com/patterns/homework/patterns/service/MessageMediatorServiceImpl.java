@@ -10,6 +10,7 @@ import java.util.List;
 public final class MessageMediatorServiceImpl implements MediatorService<MessageMediatorServiceImpl> {
     //Singleton
     public static MessageMediatorServiceImpl instance;
+
     public static MessageMediatorServiceImpl getInstance() {
         if (instance == null) {
             instance = new MessageMediatorServiceImpl();

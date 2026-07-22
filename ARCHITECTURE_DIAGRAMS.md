@@ -268,6 +268,7 @@ Each execution now shows:
 ---
 
 **Legend:**
+
 - ✓ = Action performed
 - ✗ = Action rejected
 - → = Flow direction
